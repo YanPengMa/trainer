@@ -1,0 +1,6 @@
+[ 2017-02-18T14:13:56+08:00 ] ::1 /trainer/index.php/a/login
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000115s ]
+INFO: [ app_init ] --END-- [ RunTime:0.001217s ]
+ERR: 无法加载模块:A
+

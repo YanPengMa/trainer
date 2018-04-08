@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>{$title}</title>
+		<include file='Public:main' />
+		<style type="text/css">
+			.listContent{color: #FFFFFF;margin-top: 12px; padding: 8px;background-color: #33CC99;cursor: pointer; }
+			.detailsPanel{color: #FFFFFF; display: none;background-color: #33CC99;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3 col-md-4"></div>
+				<div class="col-sm-6 col-md-4 body-center">
+					<h3 class="title text-center">
+						{$title}
+					</h3>
+					<div class="content">
+						<notempty name="introduce">
+							<div id="introduce">
+								<p class="help-block">
+									{$introduce}
+								</p>
+								<hr class="text-center" />
+							</div>
+						</notempty>
+						<div id="resultList">
+							<foreach name='formReturn' item='user'>
+								<div class="listContent" data-listId = "{$user.id}">
+									<h4>{$user.username}</h4>
+									<span class="pull-right">{$user.time}</span>
+									<span>{$user.companyname}</span>
+								</div>
+								<div class="detailsPanel" id='detail{$user.id}'>
+									<table class="table">
+										<tr><th>性别</th><td>{$user.usersex}</td></tr>
+										<tr><th>电话</th><td>{$user.usertel}</td></tr>
+										<tr><th>岗位</th><td>{$user.userstation}</td></tr>
+										<tr><th>职称</th><td>{$user.userjob}</td></tr>
+										<tr><th>单住</th><td>{$user.userroom}</td></tr>
+									</table>
+								</div>
+							</foreach>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-4"></div>
+			</div>
+		</div>
+		<include file="Public:footer" />
+		<script type="text/javascript">
+			$('.listContent').click(function(){
+				$('#detail' + this.getAttribute('data-listId')).slideToggle('slow');
+				setTimeout('position()',800); //定位footer函数
+			});
+		</script>
+	</body>
+</html>

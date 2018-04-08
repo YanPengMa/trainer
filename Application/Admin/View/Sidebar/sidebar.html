@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>西南石油大学培训中心 - 后台管理</title>
+	<include file='Public:main' />
+	<link rel="stylesheet" type="text/css" href="__PUBLIC__/css/local.css"/>
+	<script type="text/javascript">
+		$(function () {
+			$(".side-nav").find("li").each(function () {
+				var a = $(this).find("a:first")[0];
+				if ($(a).attr("href") === location.pathname) {
+					$(this).addClass("active");
+				} else {
+					$(this).removeClass("active");
+				}
+			});
+		});
+		
+		/**
+		 *获取页面的表格数据
+		 * lastCol默认为不打印
+		 **/
+		function getTable(exporturl,aheadCol,lastCol){
+			if(!aheadCol)aheadCol = 0;  //aheadCol前面几列不打印（兼容IE写法）
+			if(!lastCol)lastCol = 1;  //lastCol后面几列不打印（兼容IE写法）
+			var tr = document.getElementsByTagName('tr');//获取HTML中表格的tr
+			var th = document.getElementsByTagName('th');
+			var td = document.getElementsByTagName('td');//获取HTML中表格的td
+			var arr2 = new Array()//定义二维数组arr2
+			
+			for (var x = 0; x < tr.length; x++) {
+				arr2[x] = new Array();
+	//			var yLength = lastCol ? ((td.length + th.length)/tr.length) : (th.length - lastCol);//判断最后一列是否打印
+				var yLength = (th.length - aheadCol - lastCol);
+				
+				for (var y = 0; y < yLength; y++) {
+		    		if(x == 0){ //第一行，即th的标题行
+			    		arr2[0][y] = th[y + aheadCol].innerText;
+			    	}else{
+			    		arr2[x][y] = td[(x-1)*((td.length + th.length)/tr.length) + y + aheadCol].innerText;
+			    	}
+			    }
+			}
+			var data = JSON.stringify(arr2);
+			$.post(exporturl,{chartData:data},function(data){
+				if(data.error==0){
+					window.open(data.exporturl);
+				}else{
+					layer.msg(data.msg);return false;
+				}
+			},'json');
+		}
+	</script>
+</head>
+<body>
+<div id="wrapper">
+		<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">            
+		<div class="navbar-header">
+			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			</button>
+			<a class="navbar-brand" href="{:U('Index/index')}">培训中心 控制面板</a>
+		</div>
+		<div class="collapse navbar-collapse navbar-ex1-collapse">
+			<ul class="nav navbar-nav side-nav">
+				<li class="active"><a href="{:U('Index/index')}"><i class="glyphicon glyphicon-level-up"></i> 报名管理</a></li>
+				<li><a href="{:U('Classgroup/index')}"><i class="glyphicon glyphicon-th-list"></i> 班级管理</a></li>
+				<li><a href="{:U('Meal/index')}"><i class="glyphicon glyphicon-time"></i> 日常管理</a></li>
+				<li><a href="{:U('Invoice/index')}"><i class="glyphicon glyphicon-credit-card"></i> 发票管理</a></li>                 
+				<li><a href="{:U('Advice/index')}"><i class="glyphicon glyphicon-briefcase"></i> 意见管理</a></li>                 
+			</ul>
+			<ul class="nav navbar-nav navbar-right navbar-user">
+				<li class="dropdown user-dropdown">
+					<a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="glyphicon glyphicon-user"></i> Admin<b class="caret"></b></a>
+					<ul class="dropdown-menu">
+						<li><a href="{:U('Index/fixpwd')}"><i class="glyphicon glyphicon-edit"></i> 修改密码</a></li>
+						<li class="divider"></li>
+						<li><a href="{:U('Login/unsetLogin')}"><i class="glyphicon glyphicon-log-out"></i> 退出登录</a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+	<div id="page-wrapper">
+		{__CONTENT__}
+	</div>
+</div>
+</body>
+</html>

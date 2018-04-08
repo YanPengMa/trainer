@@ -1,0 +1,111 @@
+[ 2017-03-22T21:37:32+08:00 ] ::1 /trainer/index.php/Admin/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000638s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000796s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000920s ]
+
+[ 2017-03-22T21:37:32+08:00 ] ::1 /trainer/index.php/Admin/Login/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000539s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000730s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000881s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000102s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000225s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.039248s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.039372s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000694s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000808s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000826s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000954s ]
+
+[ 2017-03-22T21:37:34+08:00 ] ::1 /trainer/index.php/Admin/Login/getAdmin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000522s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000693s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000806s ]
+SQL: SHOW COLUMNS FROM `trainer_config` [ RunTime:0.0654s ]
+SQL: SELECT * FROM `trainer_config`  [ RunTime:0.0073s ]
+
+[ 2017-03-22T21:37:41+08:00 ] ::1 /trainer/index.php/Admin/Login/getAdmin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000028s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000496s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000632s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000736s ]
+SQL: SHOW COLUMNS FROM `trainer_config` [ RunTime:0.0073s ]
+SQL: SELECT * FROM `trainer_config`  [ RunTime:0.0005s ]
+
+[ 2017-03-22T21:37:44+08:00 ] ::1 /trainer/index.php/Admin/Login/getAdmin.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000491s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000627s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000728s ]
+SQL: SHOW COLUMNS FROM `trainer_config` [ RunTime:0.0072s ]
+SQL: SELECT * FROM `trainer_config`  [ RunTime:0.0005s ]
+
+[ 2017-03-22T21:37:44+08:00 ] ::1 /trainer/index.php/Admin/Index/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000030s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000522s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000679s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000805s ]
+SQL: SHOW COLUMNS FROM `trainer_user` [ RunTime:0.0446s ]
+SQL: select user.id,openid,companyname,username,usersex,usertel,userstation,userjob,userroom,classname,class.id as classid,user.status as userstatus from trainer_user user left join trainer_class class on user.userClass=class.ID where user.status=1 order by user.id [ RunTime:0.0875s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000126s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000242s ]
+NOTIC: [8] Array to string conversion E:\wamp\www\trainer\Application\Runtime\Cache\Admin\b595b808c2ebeeeb0478ffc30bb4e87a.php 第 160 行.
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.041173s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.041300s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000501s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000601s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000637s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000740s ]
+
+[ 2017-03-22T21:37:46+08:00 ] ::1 /trainer/index.php/Admin/Invoice/index.html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000029s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000513s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000660s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000781s ]
+SQL: SHOW COLUMNS FROM `trainer_invoice` [ RunTime:0.0466s ]
+SQL: SELECT * FROM `trainer_invoice` WHERE ( status=1 )  [ RunTime:0.0006s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000126s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000270s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.013854s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.013990s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.000517s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.000619s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000647s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000753s ]
+
+[ 2017-03-22T21:37:58+08:00 ] ::1 /trainer/index.php/Admin/Invoice/exportinvoice/data/[[%22%E5%BA%8F%E5%8F%B7%22,%22%E5%A7%93%E5%90%8D%22,%22%E5%9F%B9%E8%AE%AD%E7%8F%AD%E5%90%8D%E7%A7%B0%22,%22%E5%8D%95%E4%BD%8D%E5%90%8D%E7%A7%B0%22,%22%E7%BA%B3%E7%A8%8E%E4%BA%BA%E8%AF%86%E5%88%AB%E5%8F%B7%22,%22%E5%9C%B0%E5%9D%80%E3%80%81%E7%94%B5%E8%AF%9D%22,%22%E5%BC%80%E6%88%B7%E8%A1%8C%22,%22%E9%93%B6%E8%A1%8C%E8%B4%A6%E5%8F%B7%22,%22%E5%8F%91%E7%A5%A8%E7%B1%BB%E5%9E%8B%22,%22%E7%94%B5%E8%AF%9D%22],[%221%22,%22%E9%BB%84%E5%AE%89%E5%BA%B7%22,%22%E9%98%BF%E6%96%AF%E9%A1%BF444%22,%22%E6%88%90%E9%83%BD%E4%BF%A1%E6%81%AF%E4%BF%A1%E6%81%AF%E4%BF%A1%E6%81%AF%E4%BF%A1%E6%81%AF%E7%A7%91%E6%8A%80%E6%9C%89%E9%99%90%E5%85%AC%E5%8F%B8%22,%225672012343423213321%22,%22zhel%E5%9C%B0%E5%9D%80%E5%92%8C%E7%94%B5%E8%AF%9D%E5%95%8A%E9%80%9F54456452213%22,%22%E4%B8%AD%E5%9B%BD%E9%93%B6%E8%A1%8C%E6%96%B0%E9%83%BD%E6%94%AF%E8%A1%8C%22,%22123456789987654321%22,%22%E5%A2%9E%E5%80%BC%E7%A8%8E%E4%B8%93%E7%94%A8%E5%8F%91%E7%A5%A8%22,%2218602222222%22]].html
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000031s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000587s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000680s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000806s ]
+

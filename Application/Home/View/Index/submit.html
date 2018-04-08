@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>{$formhead}<empty name='prompt'>提交成功<else />{$prompt}</empty></title>
+		<include file='Public:main' />
+		<style type="text/css">
+			.btn{width: auto; background-color: #FFFFFF; color: #808080;border-color: #DDDDDD;padding: 2px 8px;}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3 col-md-4"></div>
+				<div class="col-sm-6 col-md-4 body-center">
+					<h3 class="title text-center">
+						{$formhead}
+					</h3>
+					<div class="content">
+						<if condition="$error eq 1">
+							<div class="error-icon text-center">
+								<span class="glyphicon glyphicon-ban-circle icon-lg"></span>
+								<h4><empty name='prompt'>提交失败<else />{$prompt}</empty></h4>
+								<notempty name='msg'>
+									<div class="well">
+										{$msg}
+									</div>
+								</notempty>
+							</div>
+							<else />
+							<div class="success-icon text-center">
+								<span class="glyphicon glyphicon-ok-circle icon-lg"></span>
+								<h4><empty name='prompt'>提交成功<else />{$prompt}</empty></h4>
+							</div>
+						</if>
+						<!--<div class="guidebtn">
+							<button class="btn btn-primary">填写发票</button>
+							<span style="margin-left: 30px;"></span>
+							<button class="btn btn-primary">关闭本页</button>
+						</div>-->
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-4"></div>
+			</div>
+		</div>
+		<include file="Public:footer" />
+	</body>
+</html>

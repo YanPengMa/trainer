@@ -1,0 +1,65 @@
+<style type="text/css">
+	.form-inline .form-control {width: 60px;}
+	.form-inline .form-group{margin-right: 5px;}
+</style>
+<h2>日常管理 <small>就餐统计</small></h2>
+<ul class="nav nav-tabs">
+	<li role="presentation" class="active"><a href="{:U('index')}">查看统计</a></li>
+	<li role="presentation"><a href="{:U('set')}">管理设置</a></li>
+</ul>
+<div class="pull-right">
+	<span id="downExcel" class="btn btn-default"><span class="glyphicon glyphicon-cloud-download"></span> Excel</span>
+</div>
+<div class="form-inline">
+	<div class="form-group">
+		<input type="text" id="year" name="year" value="{:I('get.year')?I('get.year'):date('Y')}" placeholder="年" class="form-control"/><label for="year">年</label>
+	</div>
+	<div class="form-group">
+		<input type="text" name="month" id="month" value="{:I('get.month')?I('get.month'):date('m')}" placeholder="月" class="form-control"/><label for="month">月</label>
+	</div>
+	<div class="form-group">
+		<input type="text" name="day" id="day" value="{:I('get.day')?I('get.day'):date('d')}" placeholder="日" class="form-control"/><label for="day">日</label>
+	</div>
+	<div class="form-group">
+		<input type="button" id="submit" class="btn btn-default" value="查询" />
+	</div>
+</div>
+<div class="table-responsive">
+	<table class="table table-bordered table-hover">
+		<tr><th>序号</th><th>姓名</th><th>电话</th><th>就餐时间</th><th>操作</th></tr>
+		<foreach name='data' item='data'>
+			<tr><td>{$key+1}</td><td>{$data['username']}</td><td>{$data['usertel']}</td><td>{$data['mealtime']}</td><td><span data-id="{$data['id']}" onclick="unsetMeal(this)" class="badge danger">删除</span></td></tr>
+		</foreach>
+	</table>
+</div>
+<script type="text/javascript">
+	$('#downExcel').click(function(){
+		getTable("{:U('chartSession')}");
+	});
+	$('#submit').click(function(){
+		var selectyear = document.getElementById("year").value;
+		var selectmonth = document.getElementById("month").value;
+		var selectday = document.getElementById("day").value;
+//		if(selectyear==null && selectmonth==null && selectday==null){
+//			selectyear = selectmonth = selectday = 'all';
+//		}
+		var selecturl = "{:U('index',array('year'=>'datayear','month'=>'datamonth','day'=>'dataday'))}";
+		selecturl = selecturl.replace('datayear',selectyear);
+		selecturl = selecturl.replace('datamonth',selectmonth);
+		selecturl = selecturl.replace('dataday',selectday);
+		window.location.href = selecturl;
+	});
+	function unsetMeal(obj){
+		var id = obj.getAttribute('data-id');
+		layer.confirm('确定要删除？', {
+			btn: ['确定','取消']  //按钮
+		}, function(){
+			$.post("{:U('unsetMeal')}",{id:id},function(data){
+				layer.msg(data.msg);
+				if(data.error == 0){
+					location.reload();
+				}
+			},'json');
+		});
+	}
+</script>

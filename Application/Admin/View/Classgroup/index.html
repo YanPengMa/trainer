@@ -1,0 +1,53 @@
+<script src="http://apps.bdimg.com/libs/layer/2.1/extend/layer.ext.js" type="text/javascript" charset="utf-8"></script>
+<h2>班级管理 <small>班级管理</small></h2>
+<button id="add" class="btn btn-primary btn-sm">添加新分组</button>
+<div class="table-responsive">
+	<table class="table table-bordered table-hover">
+		<tr><th>班级名称</th><th>状态</th><th>操作</th></tr>
+		<foreach name='class' item='data'>
+			<tr><td>{$data.classname}</td><td>{$data.status}</td><td><span data-id='{$data.id}' title="修改班级名称" class="badge primary" onclick="fix(this)">修改</span><!--<span title="禁用该班级" class="badge warning">禁用</span>--><span data-id='{$data.id}' title="删除该分组" class="badge danger" onclick="unsetclass(this)">删除</span></td></tr>
+		</foreach>
+	</table>
+</div>
+<script type="text/javascript">
+	function fix(obj){
+		var id = obj.getAttribute('data-id');
+		//prompt层
+		layer.prompt({title: '对班级名称重命名'}, function(resetname, index){
+			layer.close(index);
+			$.post("{:U('fix')}",{resetname:resetname,id:id},function(data){
+				layer.msg(data.msg);
+				if(data.error == 0){
+					location.reload();
+				}
+			},'json');
+		});
+	}
+	function unsetclass(obj){
+		var id = obj.getAttribute('data-id');
+		//询问框
+		layer.confirm('确定要删除该分组？', {
+			btn: ['确定','取消'] //按钮
+		}, function(){
+			$.post("{:U('unsetclass')}",{id:id},function(data){
+				layer.msg(data.msg);
+				if(data.error == 0){
+					location.reload();
+				}
+			},'json');
+		});
+	}
+	$('#add').click(function(){
+		//prompt层
+		layer.prompt({title: '班级名称'}, function(classname, index){
+			layer.close(index);
+			$.post("{:U('add')}",{classname:classname},function(data){
+				layer.msg(data.msg);
+				if(data.error == 0){
+					location.reload();
+				}
+			},'json');
+		});
+	});
+	
+</script>

@@ -1,0 +1,6 @@
+[ 2017-03-13T16:30:50+08:00 ] ::1 /trainer/index.php/openid/test2
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000016s ]
+INFO: [ app_init ] --END-- [ RunTime:0.000274s ]
+ERR: 无法加载模块:Openid
+

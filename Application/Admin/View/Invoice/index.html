@@ -1,0 +1,111 @@
+<h2>发票管理 <small>发票管理</small></h2>
+<div class="pull-right">
+	<span id="downExcel" class="btn btn-default"><span  class="glyphicon glyphicon-cloud-download"></span> Excel</span>
+</div>
+<div class="form-inline">
+	<div class="form-group">
+		<label for="invoicestatus">发票状态</label>
+		<select id="invoicestatus" name="invoicestatus" class="form-control">
+			<option value="1">正常</option>
+			<option value="0">已删除</option>
+			<option value="all">全部</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<input type="button" id="submit" class="btn btn-default" value="查询" />
+	</div>
+</div>
+<div class="table-responsive">
+	<table class="table table-bordered table-hover">
+		<tr><!--<th><div class="checkbox"><label><input id="checkAll" type="checkbox" />全选</label></div></th>--><th>序号</th><th>姓名</th><th>培训班名称</th><th>单位名称</th><th>纳税人识别号</th><th>地址、电话</th><th>开户行</th><th>银行账号</th><th>发票类型</th><th>电话</th><th>操作</th></tr>
+		<foreach name='data' item='data'>
+			<tr><!--<td><div class="checkbox"><label><input name='invoiceId' type="checkbox" /></label></div></td>--><td>{$key+1}</td><td>{$data['username']}</td><td>{$data['classname']}</td><td>{$data['companyname']}</td><td>{$data['invoicenum']}</td><td>{$data['addrtel']}</td><td>{$data['invoicebank']}</td><td>{$data['banknum']}</td><td>{$data['invoicetype']}</td><td>{$data['usertel']}</td><td><if condition="$data['status'] eq 1"><span data-id="{$data['id']}" onclick="unsetInvoice(this)" title="删除该项" class="badge danger">删除</span><else /><span data-id="{$data['id']}" onclick="recoverInvoice(this)" title="恢复该项" class="badge warning">恢复</span></if></td></tr>
+		</foreach>
+	</table>
+</div>
+<script type="text/javascript">
+	//默认选择
+    $('#invoicestatus').find("option[value='{$Think.get.invoicestatus}']").attr('selected',true);
+    
+	$('#submit').click(function(){
+		var invoicestatus = document.getElementById("invoicestatus");
+		var selectstatus = invoicestatus.options[invoicestatus.selectedIndex].value;
+		var selecturl = "{:U('index',array('invoicestatus'=>'data'))}";
+		selecturl = selecturl.replace('data',selectstatus);
+		window.location.href = selecturl;
+	});
+	//全选与全不选
+//	var $invoiceId = $("input[name='invoiceId']");
+//	$("#checkAll").click(function() {
+//		$invoiceId.attr("checked",true); 
+//		layer.msg(this.checked);
+//	});
+//	$invoiceId.click(function(){
+//		$("#checkAll").attr("checked",$invoiceId.length == $("input[name='invoiceId']:checked").length ? true : false);
+//	});
+	
+	$('#downExcel').click(function(){
+		getTable("{:U('chartSession')}");
+	});
+	function unsetInvoice(obj){
+		var id = obj.getAttribute('data-id');
+		layer.confirm('确定要删除该发票？', {
+			btn: ['确定','取消'],
+			success:function(layero, index){
+				$(document).keydown(function(e) {
+					var key = (e.keyCode) || (e.which) || (e.charCode); //兼容IE(e.keyCode)和Firefox(e.which)
+					if (key == "13") { //Enter
+						//Enter的主操作
+						$.post("{:U('unsetInvoice')}",{id:id},function(data){
+							layer.msg(data.msg);
+							if(data.error == 0){
+								location.reload();
+							}
+						},'json');
+					}
+					if(key == '27'){ //ESC
+						layer.close(index);
+					}
+				});
+			}
+		}, function(){
+			$.post("{:U('unsetInvoice')}",{id:id},function(data){
+				layer.msg(data.msg);
+				if(data.error == 0){
+					location.reload();
+				}
+			},'json');
+		});
+	}
+	function recoverInvoice(obj){
+		var id = obj.getAttribute('data-id');
+		//询问框
+		layer.confirm('确定要恢复该发票信息？', {
+			btn: ['确定','取消'],
+			success:function(layero, index){
+				$(document).keydown(function(e) {
+					var key = (e.keyCode) || (e.which) || (e.charCode); //兼容IE(e.keyCode)和Firefox(e.which)
+					if (key == "13") { //Enter
+						//Enter的主操作
+						$.post("{:U('recoverInvoice')}",{id:id},function(data){
+							layer.msg(data.msg);
+							if(data.error == 0){
+								location.reload();
+							}
+						},'json');
+					}
+					if(key == '27'){ //ESC
+						layer.close(index);
+					}
+				});
+			}
+		}, function(){
+			$.post("{:U('recoverInvoice')}",{id:id},function(data){
+				layer.msg(data.msg);
+				if(data.error == 0){
+					location.reload();
+				}
+			},'json');
+		});
+	}
+</script>

@@ -1,0 +1,17 @@
+<h2>意见管理 <small>意见建议</small></h2>
+<div class="text-right">
+	<span id="downExcel" class="btn btn-default"><span  class="glyphicon glyphicon-cloud-download"></span> Excel</span>
+</div>
+<div class="table-responsive">
+	<table class="table table-bordered table-hover">
+		<tr><th>序号</th><th>姓名</th><th>课程设计</th><th>管理服务</th><th>食宿</th><th>教师教学</th><th>意见</th></tr>
+		<foreach name='advice' item='data'>
+			<tr><td>{$key+1}</td><td>{$data['username']}</td><td>{$data['adviceclass']}</td><td>{$data['adviceservice']}</td><td>{$data['advicedealroom']}</td><td>{$data['adviceteacher']}</td><td>{$data['advicetext']}</td></tr>
+		</foreach>
+	</table>
+</div>
+<script type="text/javascript">
+	$('#downExcel').click(function(){
+		getTable("{:U('chartSession')}");
+	});
+</script>

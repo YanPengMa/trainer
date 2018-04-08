@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>{$title}</title>
+		<include file='Public:main,Public:validator' />
+	</head>
+	<body>
+		<div class="container">
+			<div class="row">
+				<div class="col-sm-3 col-md-4"></div>
+				<div class="col-sm-6 col-md-4 body-center">
+					<h3 class="title text-center">
+						{$title}
+					</h3>
+					<div class="content">
+						<notempty name="introduce">
+							<div id="introduce">
+								<p class="help-block">
+									{$introduce}
+								</p>
+								<hr class="text-center" />
+							</div>
+						</notempty>
+						<div class="well">
+							<b>您提交的评价为：</b><br /><br />
+							<b>课程设计：</b>{$myAdvice.adviceclass}<br />
+							<b>管理服务：</b>{$myAdvice.adviceservice}<br />
+							<b>食宿：</b>{$myAdvice.advicedealroom}<br />
+							<b>教师教学：</b>{$myAdvice.adviceteacher}<br />
+							<b>建议：</b><empty name='myAdvice.advicetext'>无<else />{$myAdvice.advicetext}</empty>
+						</div>
+					</div>
+				</div>
+				<div class="col-sm-3 col-md-4"></div>
+			</div>
+		</div>
+		<include file="Public:footer" />
+	</body>
+</html>

@@ -1,0 +1,22 @@
+[ 2018-03-31T17:51:09+08:00 ] ::1 /trainer/
+INFO: [ app_init ] --START--
+INFO: Run Behavior\BuildLiteBehavior [ RunTime:0.000027s ]
+INFO: [ app_init ] --END-- [ RunTime:0.002188s ]
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001863s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001963s ]
+SQL: SHOW COLUMNS FROM `trainer_user` [ RunTime:0.2165s ]
+SQL: SELECT * FROM `trainer_user` WHERE ( openid = "myopenid_djjasjdjas" and status=1  ) ORDER BY ID desc LIMIT 1   [ RunTime:0.0196s ]
+INFO: [ view_parse ] --START--
+INFO: [ template_filter ] --START--
+INFO: Run Behavior\ContentReplaceBehavior [ RunTime:0.000061s ]
+INFO: [ template_filter ] --END-- [ RunTime:0.000150s ]
+INFO: Run Behavior\ParseTemplateBehavior [ RunTime:0.186622s ]
+INFO: [ view_parse ] --END-- [ RunTime:0.186803s ]
+INFO: [ view_filter ] --START--
+INFO: Run Behavior\WriteHtmlCacheBehavior [ RunTime:0.004963s ]
+INFO: [ view_filter ] --END-- [ RunTime:0.005047s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.007155s ]
+INFO: [ app_end ] --END-- [ RunTime:0.007247s ]
+

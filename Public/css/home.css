@@ -1,0 +1,14 @@
+body{background-color: #F4F4F4;}
+.content{background-color: white; padding: 10px 5%;}
+.body-center{padding-left: 0px;padding-right: 0px;}
+.title{background-color: #6699FF;color: white;padding: 5px 0px;margin: 0px;}
+.input-group{margin-bottom: 10px;width: 100%;}
+hr{border-color: #6699FF;}
+.help-block{text-indent: 2em;}
+.btn{width: 70%;}
+.icon-lg{font-size: 3em;}
+.glyphicon-ok-circle{color: green;}
+.success-icon{margin-top: 70px;margin-bottom: 50px;}
+.glyphicon-ban-circle{color: red;}
+.error-icon{margin-top: 70px;margin-bottom: 50px;}
+.guidebtn{text-align: center;margin-top: 40px;}
