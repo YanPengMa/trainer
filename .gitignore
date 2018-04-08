@@ -1,0 +1,6 @@
+# config film
+ThinkPHP/Conf
+Application/Common/Conf/config.php
+
+# IDE
+.project
