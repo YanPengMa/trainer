@@ -11,9 +11,6 @@
 
 // 应用入口文件
 
-//检测主机名(正式环境部署)
-//if($_SERVER['SERVER_NAME'] != 'trainer.xiaomaimedia.com') die('Access Deny');
-
 // 检测PHP环境
 if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
 
